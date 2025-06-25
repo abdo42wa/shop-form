@@ -5,6 +5,7 @@ import App from './App.vue'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Checkout from './views/Checkout.vue'
+import cleave from './directives/cleave';
 
 const routes = [
     { path: '/', name: 'home', component: Home },
@@ -17,4 +18,4 @@ const router = createRouter({
     routes,
 })
 
-createApp(App).use(router).mount('#app')
+createApp(App).directive('cleave', cleave).use(router).mount('#app')
