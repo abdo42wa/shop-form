@@ -5,7 +5,7 @@
             Get your Car Insurance for $9.99
         </h1>
 
-        <Form @submit="onSubmit" :validation-schema="schema">
+        <Form :validation-schema="schema" @submit="onSubmit">
             <div class="flex flex-col space-y-5">
                 <div class="flex flex-col">
                     <label for="fullName" class="font-bold text-base font-[Helvetica]">Full Name</label>
@@ -30,24 +30,27 @@
                 <div class="flex flex-col">
                     <label for="gender" class="font-bold text-base font-[Helvetica]">Gender</label>
                     <div class="flex flex-row space-x-3">
-                        <label :class="[
+                        <label
+:class="[
                             'border rounded-b-sm px-6 py-2 flex-auto cursor-pointer',
                             selectedGender === 'female' ? 'font-medium text-white bg-blue-500' : 'border-[#D8D6D6]'
                         ]">
-                            <Field type="radio" name="gender" value="female" v-model="selectedGender" /> Female
+                            <Field v-model="selectedGender" type="radio" name="gender" value="female" /> Female
                         </label>
-                        <label :class="[
+                        <label
+:class="[
                             'border rounded-b-sm px-6 py-2 flex-auto cursor-pointer',
                             selectedGender === 'male' ? 'font-medium text-white bg-blue-500' : 'border-[#D8D6D6]'
                         ]">
-                            <Field type="radio" name="gender" value="male" v-model="selectedGender" /> Male
+                            <Field v-model="selectedGender" type="radio" name="gender" value="male" /> Male
                         </label>
                     </div>
                     <ErrorMessage name="gender" class="text-red-500 text-sm" />
                 </div>
 
                 <PaymentInfo />
-                <button type="submit" :disabled="isSubmitting"
+                <button
+type="submit" :disabled="isSubmitting"
                     class="bg-blue-500 text-white py-2 px-4 rounded-md font-bold hover:bg-blue-600 disabled:opacity-50">
                     CONTINUE
                 </button>
@@ -73,7 +76,6 @@ watch(
     }
 )
 
-// ✅ Schema
 const schema = yup.object({
     fullName: yup
         .string()

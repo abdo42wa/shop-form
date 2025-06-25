@@ -7,20 +7,23 @@
             <ErrorMessage name="holderName" class="text-red-500 text-sm" />
         </div>
 
-        <MaskedField name="cardNumber" label="Card Number" placeholder="1234 5678 9012 3456"
-            :cleaveOptions="{ creditCard: true, delimiter: ' ' }" :useRawValue="true" />
+        <MaskedField
+name="cardNumber" label="Card Number" placeholder="1234 5678 9012 3456"
+            :cleave-options="{ creditCard: true, delimiter: ' ' }" :use-raw-value="true" />
 
         <div className="flex flex-row justify-between ">
             <div className="flex flex-col flex-1 max-w-[150px] min-w-0">
-                <MaskedField name="expirationDate" label="Expiration Date" placeholder="MM/YY"
-                    :cleaveOptions="{ date: true, datePattern: ['m', 'y'] }" />
+                <MaskedField
+name="expirationDate" label="Expiration Date" placeholder="MM/YY"
+                    :cleave-options="{ date: true, datePattern: ['m', 'y'] }" />
             </div>
             <div class="flex flex-col flex-1 max-w-[150px] min-w-0">
                 <label htmlFor="cvv" class="font-bold text-base font-[Helvetica]">
                     CVV
                 </label>
-                <Field id="cvv" name="cvv" as="input" class="border border-gray-300 mt-1 rounded-md p-2"
-                    inputMode="numeric" />
+                <Field
+id="cvv" name="cvv" as="input" class="border border-gray-300 mt-1 rounded-md p-2"
+                    input-mode="numeric" />
                 <ErrorMessage name="cvv" class="text-red-500 text-sm" />
             </div>
         </div>

@@ -1,9 +1,10 @@
 <template>
-    <Field :name="name" v-slot="{ errorMessage, meta, value, setValue, handleBlur }">
+    <Field v-slot="{ errorMessage, meta, setValue, handleBlur }" :name="name">
         <div class="flex flex-col">
             <label :for="name" class="font-bold text-base font-[Helvetica]">{{ label }}</label>
-            <input :id="name" ref="inputEl" :value="displayValue" @input="event => onInput(event, setValue)"
-                @blur="handleBlur" :placeholder="placeholder" class="border border-gray-300 mt-1 rounded-md p-2" />
+            <input
+:id="name" ref="inputEl" :value="displayValue" :placeholder="placeholder"
+                class="border border-gray-300 mt-1 rounded-md p-2" @input="event => onInput(event, setValue)" @blur="handleBlur" />
             <p v-if="meta.touched && errorMessage" class="text-red-500 text-sm">{{ errorMessage }}</p>
         </div>
     </Field>
@@ -33,7 +34,6 @@ onMounted(() => {
             ...props.cleaveOptions,
             onValueChanged: function (e: any) {
                 displayValue.value = e.target.value;
-                console.log('displayValue', displayValue.value);
             },
         });
     }
