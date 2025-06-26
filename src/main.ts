@@ -3,13 +3,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import './index.css'
 import App from './App.vue'
 import Home from './views/Home.vue'
-import About from './views/About.vue'
+import OrderReview from './views/OrderReview.vue'
 import Checkout from './views/Checkout.vue'
 import cleave from './directives/cleave';
 
 const routes = [
     { path: '/', name: 'home', component: Home },
-    { path: '/about', name: 'about', component: About },
+    { path: '/order-review', name: 'review', component: OrderReview },
     { path: '/checkout', name: 'checkout', component: Checkout }
 ]
 

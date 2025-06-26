@@ -1,38 +1,33 @@
 <template>
-    <div class="flex flex-col bg-[#FAFAFA] py-4 px-6 border border-[#E2E2E2] rounded-md space-y-4">
+    <div class="flex flex-col bg-[#FAFAFA] py-4 px-6 border border-[#E2E2E2] rounded-sm space-y-4">
+        <MaskedField name="holderName" label="Card Holder Name" v-model="holderName" />
 
-        <div className="flex flex-col">
-            <label class="font-bold text-base font-[Helvetica]">Card Holder Name</label>
-            <Field name="holderName" as="input" class="border border-gray-300 mt-1 rounded-md p-2" />
-            <ErrorMessage name="holderName" class="text-red-500 text-sm" />
-        </div>
+        <MaskedField name="cardNumber" label="Card Number" :cleave-options="{ creditCard: true, delimiter: ' ' }"
+            :use-raw-value="true" />
 
-        <MaskedField
-name="cardNumber" label="Card Number" placeholder="1234 5678 9012 3456"
-            :cleave-options="{ creditCard: true, delimiter: ' ' }" :use-raw-value="true" />
-
-        <div className="flex flex-row justify-between ">
-            <div className="flex flex-col flex-1 max-w-[150px] min-w-0">
-                <MaskedField
-name="expirationDate" label="Expiration Date" placeholder="MM/YY"
+        <div class="flex flex-row justify-between">
+            <div class="flex flex-col flex-1 max-w-[150px] min-w-0">
+                <MaskedField name="expirationDate" label="Expiration Date" placeholder="MM/YY"
                     :cleave-options="{ date: true, datePattern: ['m', 'y'] }" />
             </div>
             <div class="flex flex-col flex-1 max-w-[150px] min-w-0">
-                <label htmlFor="cvv" class="font-bold text-base font-[Helvetica]">
-                    CVV
-                </label>
-                <Field
-id="cvv" name="cvv" as="input" class="border border-gray-300 mt-1 rounded-md p-2"
-                    input-mode="numeric" />
-                <ErrorMessage name="cvv" class="text-red-500 text-sm" />
+                <MaskedField name="cvv" label="CVV" :cleave-options="{ blocks: [3] }" />
             </div>
         </div>
-
     </div>
 </template>
 
 <script lang="ts" setup>
-import { Field, ErrorMessage } from 'vee-validate'
-import MaskedField from './MaskedField.vue'
+import { ref, watch, defineProps } from 'vue';
+import MaskedField from './MaskedField.vue';
 
+const props = defineProps({
+    fullName: String
+});
+
+const holderName = ref(props.fullName);
+
+watch(() => props.fullName, (newFullName) => {
+    holderName.value = newFullName;
+});
 </script>
